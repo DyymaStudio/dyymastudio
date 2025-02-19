@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #4f5154, #353638);
+        }
+
+        .backbtn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .backbtn-hover {
+            background-color: gray;
+        }
+
+        .titlentxt {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: white;
+            z-index: 1000;
+            text-shadow:
+                2px 2px 0px black,
+                -2px -2px 0px black,
+                2px -2px 0px black,
+                -2px 2px 0px black;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        .news-item {
+            background-color: #bcc3cf;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .news-item:hover {
+            transform: scale(1.05);
+        }
+
+        .news-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 20%;
+        }
+
+        .maximized-news {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background-color: #bcc3cf;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 10;
+            box-sizing: border-box;
+        }
+
+        .maximized-news .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .maximized-news .content-container {
+            overflow-y: auto;
+            max-height: 60vh;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="backbtn" onclick="window.location.href='index.html'">Back</button>
+    <h2 class="titlentxt">DyymaStudio Newswire</h2>
+
+    <div class="grid-container" id="grid-container"></div>
+
+    <div class="maximized-news" id="maximized-news">
+        <button class="close-btn" onclick="closeMaximized()">X</button>
+        <div id="maximized-title" style="font-weight: bold;"></div>
+        <div id="smalldate" style="font-size: 15px;"></div>
+        <p>⠀ </p>
+        <div id="maximized-content" class="content-container"></div>
+        <p>⠀ </p>
+        <div id="maximized-video"></div>
+    </div>
+
+    <script>
+        // Example JSON data structure
+        // Use VIRGOLA to separate the news
+        // For youtube embed use https://www.youtube.com/embed/videoid
+        const newsData = [
+            {
+                "Title": "Welcome to DyymaStudio Website!",
+                "Content": "We’re excited to officially launch DyymaStudio website, your go-to place for unique and immersive gaming experiences! This is just the beginning of an incredible journey, and we can’t wait to share it with you. Stay tuned for exciting updates on Angelica’s Chaotic Hardcore School, new levels, story details, and new features coming to the game. We’re also working on future projects that will push the boundaries of creativity and challenge players in new ways—so be sure to follow us for all the latest news! Thank you for being part of this adventure—big things are coming! #DyymaStudio",
+                "YouTubeLink": "",
+                "ImageIcon": "news_0.png",
+                "Date": "19.02.2025"
+            }
+        ];
+
+        function displayNews() {
+            const gridContainer = document.getElementById('grid-container');
+            newsData.forEach((news, index) => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <img src="${news.ImageIcon}" alt="News Icon">
+                    <h3>${news.Title}</h3>
+                    <p>${news.Date}</p>
+                `;
+                newsItem.onclick = () => openMaximized(news, index);
+                gridContainer.appendChild(newsItem);
+            });
+        }
+
+        function openMaximized(news, index) {
+            const maximizedNews = document.getElementById('maximized-news');
+            document.getElementById('maximized-title').innerText = news.Title;
+            document.getElementById('smalldate').innerText = news.Date;
+            document.getElementById('maximized-content').innerText = news.Content;
+
+            const videoContainer = document.createElement('div');
+            videoContainer.innerHTML = `<p>⠀</p><iframe src="${news.YouTubeLink}" allowfullscreen></iframe>`;
+            document.getElementById('maximized-content').appendChild(videoContainer);
+
+            maximizedNews.style.display = 'block';
+        }
+
+        function closeMaximized() {
+            const maximizedNews = document.getElementById('maximized-news');
+            maximizedNews.style.display = 'none';
+        }
+
+        // Initialize the page with the news data
+        displayNews();
+
+        // locopipaxisgey
+    </script>
+
+</body>
+</html>
