@@ -31,10 +31,6 @@
             z-index: 1000;
         }
 
-        .backbtn-hover {
-            background-color: gray;
-        }
-
         .titlentxt {
             position: fixed;
             top: 10px;
@@ -88,7 +84,6 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
             z-index: 10;
             box-sizing: border-box;
         }
@@ -104,55 +99,35 @@
             cursor: pointer;
         }
 
-        .maximized-news .content-container {
-            overflow-y: auto;
-            max-height: 60vh;
-            word-wrap: break-word;
-            white-space: normal;
-        }
-
-        iframe {
+        .news-iframe {
             width: 100%;
-            height: 315px;
+            height: 60vh;
             border: none;
         }
-
     </style>
 </head>
 <body>
-
     <button class="backbtn" onclick="window.location.href='../'">Back</button>
     <h2 class="titlentxt">DyymaStudio Newswire</h2>
-
     <div class="grid-container" id="grid-container"></div>
-
     <div class="maximized-news" id="maximized-news">
         <button class="close-btn" onclick="closeMaximized()">X</button>
-        <div id="maximized-title" style="font-weight: bold;"></div>
-        <div id="smalldate" style="font-size: 15px;"></div>
-        <p>⠀ </p>
-        <div id="maximized-content" class="content-container"></div>
-        <p>⠀ </p>
-        <div id="maximized-video"></div>
+        <h3 id="maximized-title"></h3>
+        <p id="smalldate"></p>
+        <iframe id="news-iframe" class="news-iframe"></iframe>
     </div>
-
     <script>
-        // Example JSON data structure
-        // Use VIRGOLA to separate the news
-        // For youtube embed use https://www.youtube.com/embed/videoid
         const newsData = [
             {
                 "Title": "Welcome to DyymaStudio Website!",
-                "Content": "We’re excited to officially launch DyymaStudio website, your go-to place for unique and immersive gaming experiences! This is just the beginning of an incredible journey, and we can’t wait to share it with you. Stay tuned for exciting updates on Angelica’s Chaotic Hardcore School, new levels, story details, and new features coming to the game. We’re also working on future projects that will push the boundaries of creativity and challenge players in new ways—so be sure to follow us for all the latest news! Thank you for being part of this adventure—big things are coming! #DyymaStudio",
-                "YouTubeLink": "",
+                "Filename": "news0.html",
                 "ImageIcon": "news_0.png",
                 "Date": "19.02.2025"
             },
             {
                 "Title": "ACHSR v.1.3.0 Arrives on May 11th",
-                "Content": "Angelica’s Chaotic Hardcore School is receiving a major update with v.1.3.0, launching on May 11th. This update introduces: New Bonus Level: Computer Science – The first bonus level, featuring tech-based challenges, Fire Alarm System – The fire alarm will only activate if a call point is pressed, triggering a false alarm, 60 New Language Sentences – Expanded dialogue for more interactions, Free Mode Season 1 – The first seasonal update for Free Mode, bringing new content to explore and ACHSR continues to expand with new features and challenges. Stay tuned for more updates.",
-                "YouTubeLink": "",
-                "ImageIcon": "imagenews130.png",
+                "Filename": "news1.html",
+                "ImageIcon": "news_1.png",
                 "Date": "03.03.2025"
             }
         ];
@@ -167,34 +142,23 @@
                     <h3>${news.Title}</h3>
                     <p>${news.Date}</p>
                 `;
-                newsItem.onclick = () => openMaximized(news, index);
+                newsItem.onclick = () => openMaximized(news);
                 gridContainer.appendChild(newsItem);
             });
         }
 
-        function openMaximized(news, index) {
-            const maximizedNews = document.getElementById('maximized-news');
+        function openMaximized(news) {
             document.getElementById('maximized-title').innerText = news.Title;
             document.getElementById('smalldate').innerText = news.Date;
-            document.getElementById('maximized-content').innerText = news.Content;
-
-            const videoContainer = document.createElement('div');
-            videoContainer.innerHTML = `<p>⠀</p><iframe src="${news.YouTubeLink}" allowfullscreen></iframe>`;
-            document.getElementById('maximized-content').appendChild(videoContainer);
-
-            maximizedNews.style.display = 'block';
+            document.getElementById('news-iframe').src = news.Filename;
+            document.getElementById('maximized-news').style.display = 'block';
         }
 
         function closeMaximized() {
-            const maximizedNews = document.getElementById('maximized-news');
-            maximizedNews.style.display = 'none';
+            document.getElementById('maximized-news').style.display = 'none';
         }
 
-        // Initialize the page with the news data
         displayNews();
-
-        // locopipaxisgey
     </script>
-
 </body>
 </html>
