@@ -143,7 +143,7 @@
                 newsItem.classList.add('news-item');
                 newsItem.innerHTML = `
                     <img src="${news.ImageIcon}" alt="News Icon">
-                    <p>${news.Date}</p>
+                    <p>${news.DateTopic}</p>
                     <h3>${news.Title}</h3>
                 `;
                 newsItem.onclick = () => openMaximized(news);
