@@ -123,14 +123,16 @@
                 "Filename": "news1.html",
                 "ImageIcon": "news_1.png",
                 "Date": "03.03.2025",
-                "AccurateDate": "March 3, 2025"
+                "AccurateDate": "March 3, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
                 "Title": "Welcome to DyymaStudio Website!",
                 "Filename": "news0.html",
                 "ImageIcon": "news_0.png",
                 "Date": "19.02.2025",
-                "AccurateDate": "February 19, 2025"
+                "AccurateDate": "February 19, 2025",
+                "NewsTopic": "DyymaStudio"
             }
         ];
 
@@ -142,6 +144,7 @@
                 newsItem.innerHTML = `
                     <img src="${news.ImageIcon}" alt="News Icon">
                     <h3>${news.Title}</h3>
+                    <p>${news.NewsTopic}</p>
                     <p>${news.Date}</p>
                 `;
                 newsItem.onclick = () => openMaximized(news);
