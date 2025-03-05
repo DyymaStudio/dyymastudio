@@ -122,16 +122,14 @@
                 "Title": "ACHSR v.1.3.0 Arrives on May 11th",
                 "Filename": "news1.html",
                 "ImageIcon": "news_1.png",
-                "DateTopic": "March 3, 2025",
-                "AccurateDate": "March 3, 2025",
+                "Date": "March 3, 2025",
                 "NewsTopic": "ACHSR"
             },
             {
                 "Title": "Welcome to DyymaStudio Website!",
                 "Filename": "news0.html",
                 "ImageIcon": "news_0.png",
-                "DateTopic": "February 19, 2025",
-                "AccurateDate": "February 19, 2025",
+                "Date": "February 19, 2025",
                 "NewsTopic": "DyymaStudio"
             }
         ];
@@ -143,7 +141,8 @@
                 newsItem.classList.add('news-item');
                 newsItem.innerHTML = `
                     <img src="${news.ImageIcon}" alt="News Icon">
-                    <p>${news.DateTopic}</p>
+                    <h4>${news.NewsTopic}</h4>
+                    <p>${news.Date}</p>
                     <h3>${news.Title}</h3>
                 `;
                 newsItem.onclick = () => openMaximized(news);
@@ -153,7 +152,7 @@
 
         function openMaximized(news) {
             document.getElementById('maximized-title').innerText = news.Title;
-            document.getElementById('smalldate').innerText = news.AccurateDate;
+            document.getElementById('smalldate').innerText = news.Date;
             document.getElementById('news-iframe').src = news.Filename;
             document.getElementById('maximized-news').style.display = 'block';
         }
