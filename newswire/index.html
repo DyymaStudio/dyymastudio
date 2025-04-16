@@ -176,6 +176,10 @@
         }
 
         displayNews();
+
+        if (params.has("new")) {
+            openMaximized(newsData[parseInt(params.get("new"), 10)]);
+        }
     </script>
 </body>
 </html>
