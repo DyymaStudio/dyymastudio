@@ -1,104 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Dyymastudio Games</title>
-	<link rel="icon" href="https://dyymastudio.site/icn.ico" type="image/x-icon">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<style>
-	body {
-		font-family: 'Roboto', sans-serif;
-		margin: 0;
-		padding: 0;
-		justify-content: center;
-		height: 100vh;
-		text-align: center;
-		background: linear-gradient(to bottom, gray, black);
-	}
-	.maintitel {
-		font-size: 50px;
-		justify-content: center;
-	}
-	.subtitle {
-		font-size: 24px;
-		font-weight: bold;
-		margin-bottom: 20px;
-	}
-	.game-section {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-wrap: wrap;
-		margin: 20px 0;
-	}
-	.game-box {
-		background: #828d9e;
-		border-radius: 15px;
-		padding: 20px;
-		text-align: center;
-		width: 150px;
-		height: 230px;
-		margin: 10px;
-		transition: transform 0.3s ease;
-	}
-	.game-box:hover {
-		transform: scale(1.05);
-	}
-	.game-box img {
-		width: 100px;
-		height: 100px;
-		border-radius: 20px;
-		object-fit: cover;
-	}
-	.game-title {
-		font-size: 18px;
-		font-weight: bold;
-		margin-top: 10px;
-	}
-	.backbtn {
-		position: fixed;
-		top: 10px;
-		left: 10px;
-		padding: 10px 20px;
-		background-color: white;
-		color: black;
-		border: none;
-		font-size: 20px;
-		border-radius: 5px;
-		cursor: pointer;
-		z-index: 1000;
-	}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DyymaStudio Games</title>
+    <link rel="icon" href="https://dyymastudio.site/icn.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top, #50545a 0, #252628 35%, #111214 100%);
+            color: #f5f5f5;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 22px;
+            background: rgba(15, 15, 16, 0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            z-index: 1000;
+        }
+
+        .top-left-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .backbtn {
+            padding: 7px 16px;
+            background-color: #ffffff;
+            color: #000;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+        }
+
+        .backbtn:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+            transform: translateY(-1px);
+        }
+
+        .backbtn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .top-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* PAGE LAYOUT */
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 24px auto 40px;
+            padding: 0 18px;
+            text-align: center;
+        }
+
+        .page-header-title {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .page-header-subtitle {
+            color: #d0d0d0;
+            margin-bottom: 26px;
+            font-size: 15px;
+        }
+
+        /* GAME ROW – stile "vetrina" */
+        .games-row {
+            display: flex;
+            flex-wrap: nowrap;          /* una sola fila */
+            justify-content: center;
+            gap: 24px;
+            padding-bottom: 16px;
+            overflow-x: auto;           /* su schermi stretti scroll orizzontale */
+            scroll-snap-type: x mandatory;
+        }
+
+        .games-row::-webkit-scrollbar {
+            height: 6px;
+        }
+        .games-row::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.25);
+            border-radius: 999px;
+        }
+        .games-row::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .game-card,
+        .secret-card {
+            flex: 0 0 280px;            /* larghezza fissa da vetrina */
+            scroll-snap-align: start;
+        }
+
+        .game-card {
+            background: rgba(240, 243, 250, 0.96);
+            color: #111;
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.45);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            background: #fff;
+            box-shadow: 0 18px 35px rgba(0,0,0,.7);
+        }
+
+        .game-thumb {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .game-thumb img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .game-title {
+            font-size: 17px;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        .genre {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .platform-badge {
+            margin-bottom: 10px;
+        }
+
+        .platform-badge img {
+            width: 100px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .cta-row {
+            margin-top: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-arrow { font-size: 20px; }
+
+        .cta-btn {
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: .06em;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,.4);
+        }
+
+        .cta-btn.buy { background: #1b7cff; }
+        .cta-btn.download { background: #28a745; }
+        .cta-btn.disabled {
+            background: #444;
+            cursor: not-allowed;
+            opacity: .75;
+        }
+
+        /* SECRET PROJECT */
+        .secret-card {
+            background: #000;
+            color: #fff;
+            padding: 32px 18px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.6);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .secret-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            margin-bottom: 8px;
+        }
+
+        .secret-sub {
+            color: #aaa;
+            margin-bottom: 14px;
+        }
+
+        .coming-soon {
+            font-size: 12px;
+            letter-spacing: .14em;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #111;
+            border: 1px solid #333;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .secret-card .cta-row {
+            justify-content: center;
+        }
+
+        @media (max-width: 700px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .page-header-title {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
 <body>
-	<h1 class="maintitel">DyymaStudio Games</h1>
-	<h2 class="subtitle">Our Games:</h2>
 
-	<button class="backbtn" onclick="window.location.href='../'">Back</button>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-left-group">
+            <button class="backbtn" onclick="window.location.href='../'">Back</button>
+            <span class="logo-text">DYYMASTUDIO</span>
+        </div>
+        <h1 class="top-title">Games</h1>
+    </div>
 
-	<div class="game-section">
-		<a class="game-box" href="https://store.steampowered.com/app/3187760/Angelicas_Chaotic_Hardcore_School/">
-			<img src="achsr.png" alt="ACHSR">
-			<div class="game-title">Angelica's Chaotic Hardcore School: Remastered</div>
-			<img src="https://img.itch.zone/aW1nLzE4MzUyNzU5LnBuZw==/original/8DRbfb.png" style="margin-top: 10px; width: 90px; height: 30px; transform: translateY(30%);" alt="steamlogo">
-		</a>
-	</div>
+    <!-- PAGE -->
+    <div class="page-wrapper">
 
-	<div class="game-section">
-		<a class="game-box" href="https://andreaadimaa.itch.io/achs">
-			<img src="achs.png" alt="ACHS">
-			<div class="game-title">Angelica's Chaotic Hardcore School Classic</div>
-			<img src="https://static.itch.io/images/badge-color.svg" style="margin-top: 10px; width: 90px; height: 30px; transform: translateY(30%); border-radius: 10px;" alt="steamlogo">
-		</a>
-		<a class="game-box" href="https://andreaadimaa.itch.io/crows-amazing-pelicans-schoolhouse">
-			<img src="capsh.png" alt="CAPSH">
-			<div class="game-title">[CANCELLED] Crow's Amazing Pelicans SchoolHouse</div>
-			<img src="https://static.itch.io/images/badge-color.svg" style="margin-top: 10px; width: 90px; height: 30px; border-radius: 10px;" alt="steamlogo">
-		</a>
-	</div>
+        <h2 class="page-header-title">DyymaStudio Games</h2>
+        <p class="page-header-subtitle">
+            Explore our released and legacy titles from Angelica's Chaotic Hardcore School and more.
+        </p>
+
+        <!-- UNA SOLA FILA, ORDINE: SECRET / REMASTERED / CLASSIC / CROW -->
+        <div class="games-row">
+
+            <!-- 1. SECRET PROJECT -->
+            <div class="secret-card">
+                <div class="secret-title">SECRET PROJECT</div>
+                <div class="secret-sub">To Be Announced</div>
+                <div class="coming-soon">COMING SOON</div>
+                <div class="cta-row">
+                    <a class="cta-btn disabled">TBA</a>
+                </div>
+            </div>
+
+            <!-- 2. ACHS REMASTERED -->
+            <div class="game-card">
+                <div class="game-thumb">
+                    <img src="achsr.png" alt="Angelica's Chaotic Hardcore School: Remastered">
+                </div>
+                <div class="game-title">Angelica's Chaotic Hardcore School: Remastered</div>
+                <div class="genre">Genre: Horror</div>
+                <div class="platform-badge">
+                    <img src="https://img.itch.zone/aW1nLzE4MzUyNzU5LnBuZw==/original/8DRbfb.png" alt="Steam">
+                </div>
+                <div class="cta-row">
+                    <span class="cta-arrow">➜</span>
+                    <a class="cta-btn buy" href="https://store.steampowered.com/app/3187760/Angelicas_Chaotic_Hardcore_School/" target="_blank" rel="noopener">
+                        Buy Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. ACHS CLASSIC -->
+            <div class="game-card">
+                <div class="game-thumb">
+                    <img src="achs.png" alt="Angelica's Chaotic Hardcore School Classic">
+                </div>
+                <div class="game-title">Angelica's Chaotic Hardcore School Classic</div>
+                <div class="genre">Genre: Horror</div>
+                <div class="platform-badge">
+                    <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io">
+                </div>
+                <div class="cta-row">
+                    <span class="cta-arrow">➜</span>
+                    <a class="cta-btn buy" href="https://andreaadimaa.itch.io/achs" target="_blank" rel="noopener">
+                        Buy Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. CROW'S AMAZING PELICANS SCHOOLHOUSE -->
+            <div class="game-card">
+                <div class="game-thumb">
+                    <img src="capsh.png" alt="Crow's Amazing Pelicans SchoolHouse">
+                </div>
+                <div class="game-title">[CANCELLED] Crow's Amazing Pelicans SchoolHouse</div>
+                <div class="genre">Genre: Horror</div>
+                <div class="platform-badge">
+                    <img src="https://static.itch.io/images/badge-color.svg" alt="itch.io">
+                </div>
+                <div class="cta-row">
+                    <span class="cta-arrow">➜</span>
+                    <a class="cta-btn download" href="https://andreaadimaa.itch.io/crows-amazing-pelicans-schoolhouse" target="_blank" rel="noopener">
+                        Download Now
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
-
