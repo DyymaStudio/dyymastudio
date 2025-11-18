@@ -11,7 +11,7 @@
     <style>
         * { box-sizing: border-box; }
 
-        body {
+       body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
                  Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     margin: 0;
@@ -97,32 +97,19 @@
             font-size: 15px;
         }
 
-        /* GAME ROW – stile "vetrina" */
+        /* GAME ROW – adesso responsiva, senza scrollbar */
         .games-row {
             display: flex;
-            flex-wrap: nowrap;          /* una sola fila */
+            flex-wrap: wrap;          /* può andare a capo */
             justify-content: center;
             gap: 24px;
             padding-bottom: 16px;
-            overflow-x: auto;           /* su schermi stretti scroll orizzontale */
-            scroll-snap-type: x mandatory;
-        }
-
-        .games-row::-webkit-scrollbar {
-            height: 6px;
-        }
-        .games-row::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.25);
-            border-radius: 999px;
-        }
-        .games-row::-webkit-scrollbar-track {
-            background: transparent;
         }
 
         .game-card,
         .secret-card {
-            flex: 0 0 280px;            /* larghezza fissa da vetrina */
-            scroll-snap-align: start;
+            flex: 0 1 260px;          /* base ~260px, ma si adatta */
+            max-width: 280px;
         }
 
         .game-card {
@@ -249,6 +236,7 @@
             justify-content: center;
         }
 
+        /* MOBILE */
         @media (max-width: 700px) {
             .top-bar {
                 flex-direction: column;
@@ -258,6 +246,18 @@
 
             .page-header-title {
                 font-size: 26px;
+            }
+
+            .games-row {
+                gap: 18px;
+            }
+
+            .game-card,
+            .secret-card {
+                flex: 1 1 100%;
+                max-width: 360px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
     </style>
@@ -281,7 +281,7 @@
             Explore our released and legacy titles from Angelica's Chaotic Hardcore School and more.
         </p>
 
-        <!-- UNA SOLA FILA, ORDINE: SECRET / REMASTERED / CLASSIC / CROW -->
+        <!-- ORDINE: SECRET / REMASTERED / CLASSIC / CROW -->
         <div class="games-row">
 
             <!-- 1. SECRET PROJECT -->
