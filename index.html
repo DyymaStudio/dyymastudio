@@ -8,52 +8,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
-            background-color: #111;
+            background: radial-gradient(circle at top, #222 0, #050505 45%, #000 100%);
             color: white;
         }
 
-        /* ---------------- TOP BAR ---------------- */
+        /* ---------------- TOP / BOTTOM BAR ---------------- */
         .top-bar, .bottom-bar {
-            background: #222;
-            padding: 15px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             left: 0;
             z-index: 1000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.7);
         }
 
         .top-bar {
             top: 0;
         }
 
-        /* Only left label */
+        .bottom-bar {
+            bottom: 0;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
         .top-left-text {
             font-size: 20px;
-            font-weight: bold;
-            color: white;
+            font-weight: 700;
+            color: #fff;
             text-align: left;
-            padding-left: 20px;
+            letter-spacing: 1px;
         }
 
         /* ---------------- MAIN CONTENT ---------------- */
         .content {
             margin-top: 80px;
-            padding-bottom: 40px;
+            padding-bottom: 70px;
             width: 100vw;
         }
 
-        /* ---------------- FULL-WIDTH CENTERED SLIDESHOW ---------------- */
+        /* ---------------- SLIDESHOW ---------------- */
         .slideshow {
             position: relative;
             width: 100%;
-            height: 300px; /* You can increase this */
+            height: 260px;
             margin: 0 auto;
             overflow: hidden;
+            border-bottom: 1px solid #222;
         }
 
         .slide {
@@ -65,68 +79,158 @@
             top: 0;
             opacity: 0;
             transition: opacity 2s ease;
+            filter: saturate(1.2);
         }
 
         .slide.active {
             opacity: 1;
         }
 
-        /* ---------------- BIG BUTTON AREA ---------------- */
+        h1 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        .subtitle {
+            max-width: 900px;
+            margin: 0 auto;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* ---------------- BIG BUTTON CARDS ---------------- */
         .big-buttons-container {
             margin-top: 35px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 25px;
-            padding: 0 20px;
+            padding: 0 20px 40px;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .big-button {
-            background: #333;
-            padding: 25px 35px;
-            font-size: 24px;
-            font-weight: bold;
+            background: linear-gradient(145deg, #181818, #242424);
+            border: 1px solid #333;
+            padding: 18px 22px;
             color: white;
             text-decoration: none;
-            border-radius: 12px;
-            display: inline-block;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             min-width: 240px;
-            text-align: center;
-            transition: 0.2s;
+            max-width: 260px;
+            text-align: left;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .big-button-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .big-button-arrow {
+            font-size: 20px;
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .big-button-title {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .big-button-subtitle {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #b0b0b0;
         }
 
         .big-button:hover {
-            background: #444;
-            transform: scale(1.07);
+            transform: translateY(-4px) scale(1.03);
+            background: linear-gradient(145deg, #202020, #2b2b2b);
+            border-color: #666;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.8);
         }
 
-        /* ---------------- BUTTONS ---------------- */
+        .big-button:active {
+            transform: translateY(-1px) scale(0.99);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+        }
 
+        /* ---------------- SMALL BUTTON ---------------- */
         .r-button {
-            background: #333;
-            padding: 10px 15px;
-            font-size: 10px;
+            background: #222;
+            padding: 10px 20px;
+            font-size: 12px;
             font-weight: bold;
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 8px;
             display: inline-block;
-            min-width: 90px;
+            min-width: 120px;
             text-align: center;
-            transition: 0.2s;
+            transition: 0.18s;
+            border: 1px solid #444;
+            margin-top: 15px;
         }
 
         .r-button:hover {
-            background: #444;
-            transform: scale(1.07);
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.6);
         }
 
-        /* ---------------- BOTTOM BAR ---------------- */
-        .bottom-bar {
-            bottom: 0;
+        /* ---------------- MORE INFO SECTION ---------------- */
+        #moreInfo {
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 0 20px 40px;
+            text-align: left;
+        }
+
+        #moreInfo h2 {
+            margin-top: 20px;
+        }
+
+        #moreInfo p {
+            color: #ddd;
+        }
+
+        #moreInfo a {
+            word-break: break-all;
+        }
+
+        /* ---------------- RESPONSIVE ---------------- */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .big-button {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .slideshow {
+                height: 220px;
+            }
+
+            .top-left-text {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -142,38 +246,92 @@
 
         <!-- HOME SECTION -->
         <div id="home" class="section">
-
-            <!-- FULL-WIDTH SLIDESHOW -->
+            <!-- SLIDESHOW -->
             <div class="slideshow">
-                <img src="imgbg0.jpg" class="slide active">
-                <img src="imgbg1.jpg" class="slide">
+                <img src="imgbg0.jpg" class="slide active" alt="DyymaStudio banner 1">
+                <img src="imgbg1.jpg" class="slide" alt="DyymaStudio banner 2">
             </div>
 
             <h1>Welcome to DyymaStudio Games Website!</h1>
-            <p>Dyymastudio is dedicated to delivering unique and immersive gaming experiences. From Angelica's Chaotic Hardcore School to Future Exciting Projects</p>
+            <p class="subtitle">
+                Dyymastudio is dedicated to delivering unique and immersive gaming experiences – from Angelica's Chaotic Hardcore School to future exciting projects.
+            </p>
 
-            <!-- NEW BIG MULTI-ROW BUTTONS -->
+            <!-- BIG BUTTONS -->
             <div class="big-buttons-container">
-                <a class="big-button" href="#" onclick="showSection('home')">Home</a>
-                <a class="big-button" href="/games">Games</a>
-                <a class="big-button" href="/newswire">Newswire</a>
-                <a class="big-button" href="https://www.youtube.com/@dyymastudio" target="_blank">YouTube</a>
-                <a class="big-button" href="https://discord.gg/9zrXa4rshb" target="_blank">Discord</a>
-                <a class="big-button" href="#" onclick="showSection('moreInfo')">Info</a>
-            </div>
 
+                <a class="big-button" href="#" onclick="showSection('home')">
+                    <div class="big-button-top">
+                        <span class="big-button-arrow">➜</span>
+                        <span class="big-button-title">Home</span>
+                    </div>
+                    <span class="big-button-subtitle">
+                        Main hub with news and quick access to everything.
+                    </span>
+                </a>
+
+                <a class="big-button" href="/games">
+                    <div class="big-button-top">
+                        <span class="big-button-arrow">➜</span>
+                        <span class="big-button-title">Games</span>
+                    </div>
+                    <span class="big-button-subtitle">
+                        Discover all DyymaStudio titles, from horror to experiments.
+                    </span>
+                </a>
+
+                <a class="big-button" href="/newswire">
+                    <div class="big-button-top">
+                        <span class="big-button-arrow">➜</span>
+                        <span class="big-button-title">Newswire</span>
+                    </div>
+                    <span class="big-button-subtitle">
+                        Dev logs, announcements and important updates.
+                    </span>
+                </a>
+
+                <a class="big-button" href="https://www.youtube.com/@dyymastudio" target="_blank">
+                    <div class="big-button-top">
+                        <span class="big-button-arrow">➜</span>
+                        <span class="big-button-title">YouTube</span>
+                    </div>
+                    <span class="big-button-subtitle">
+                        Trailers, teasers and development content on our channel.
+                    </span>
+                </a>
+
+                <a class="big-button" href="https://discord.gg/9zrXa4rshb" target="_blank">
+                    <div class="big-button-top">
+                        <span class="big-button-arrow">➜</span>
+                        <span class="big-button-title">Discord</span>
+                    </div>
+                    <span class="big-button-subtitle">
+                        Join the community, chat with us and share feedback.
+                    </span>
+                </a>
+
+                <a class="big-button" href="#" onclick="showSection('moreInfo')">
+                    <div class="big-button-top">
+                        <span class="big-button-arrow">➜</span>
+                        <span class="big-button-title">Info</span>
+                    </div>
+                    <span class="big-button-subtitle">
+                        Learn more about DyymaStudio and how to contact us.
+                    </span>
+                </a>
+            </div>
         </div>
 
         <!-- MORE INFO SECTION -->
         <div id="moreInfo" class="section" style="display: none;">
             <h2>Who are we?</h2>
             <p>We are DyymaStudio, a small indie team that loves creating original and fun games.</p>
-            <p>We work on projects with different styles, from small horror games to big horror games,</p>
-            <p>always trying to bring new ideas and interesting experiences to players.</p>
+            <p>We work on projects with different styles, from small horror games to big horror experiences,</p>
+            <p>always trying to bring new ideas and interesting moments to players.</p>
 
             <h2>Contact Info</h2>
             <p>E-mail:</p>
-            <a href="mailto:andricraftstudiogames@gmail.com" style="color: red;">
+            <a href="mailto:andricraftstudiogames@gmail.com" style="color: #ff5555;">
                 andricraftstudiogames@gmail.com
             </a>
             <p>Join our Discord server if you have any questions for us!</p>
