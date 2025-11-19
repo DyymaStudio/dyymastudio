@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dyymastudio Games</title>
-    <link rel="icon" href="icn.ico" type="image/x-icon">
-
-    <!-- puoi anche rimuovere questo se vuoi solo il font di sistema, ma non dà fastidio -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>DyymaStudio Newswire</title>
+    <link rel="icon" href="https://www.dyymastudio.site/icn.ico" type="image/x-icon">
 
     <style>
         * {
@@ -18,600 +15,529 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
-            background: radial-gradient(circle at top, #222 0, #050505 45%, #000 100%);
-            color: white;
+            background: radial-gradient(circle at top, #50545a 0, #252628 35%, #111214 100%);
+            color: #f5f5f5;
         }
 
-        /* ---------------- TOP / BOTTOM BAR ---------------- */
-        .top-bar, .bottom-bar {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            position: fixed;
-            width: 100%;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(0,0,0,0.7);
-        }
-
+        /* ---------------- TOP BAR ---------------- */
         .top-bar {
+            position: sticky;
             top: 0;
-        }
-
-        .bottom-bar {
-            bottom: 0;
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #aaa;
-        }
-
-        .top-left-text {
-            font-size: 16px;
-            font-weight: 800;
-            color: #fff;
-            text-align: left;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        /* ---------------- MAIN CONTENT ---------------- */
-        .content {
-            margin-top: 80px;
-            padding-bottom: 70px;
-            width: 100vw;
-        }
-
-        /* ---------------- SLIDESHOW ---------------- */
-        .slideshow {
-            position: relative;
-            width: 100%;
-            height: 260px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-bottom: 1px solid #222;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            transition: opacity 2s ease;
-            filter: saturate(1.2);
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        h1 {
-            margin-top: 30px;
-            margin-bottom: 10px;
-            font-size: 30px;
-            font-weight: 800;
-        }
-
-        p {
-            margin: 5px 0;
-        }
-
-        .subtitle {
-            max-width: 900px;
-            margin: 0 auto;
-            color: #ccc;
-            font-size: 14px;
-        }
-
-        /* ---------------- BIG BUTTON CARDS ---------------- */
-        .big-buttons-container {
-            margin-top: 35px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            padding: 0 20px 40px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .big-button {
-            background: linear-gradient(145deg, #181818, #242424);
-            border: 1px solid #333;
-            padding: 18px 22px;
-            color: white;
-            text-decoration: none;
-            border-radius: 14px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            min-width: 240px;
-            max-width: 260px;
-            text-align: left;
-            transition: transform 0.18s ease, box-shadow 0.18s ease,
-                        border-color 0.18s ease, background 0.18s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            position: relative;
-        }
-
-        .big-button-top {
+            z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 10px;
-            width: 100%;
+            justify-content: space-between;
+            padding: 10px 22px;
+            background: rgba(15, 15, 16, 0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
-        .big-button-arrow {
-            font-size: 20px;
-            line-height: 1;
-            opacity: 0.8;
+        .top-left-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .big-button-title {
-            font-weight: 700;
-            font-size: 20px;
+        .backbtn {
+            padding: 7px 16px;
+            background-color: #ffffff;
+            color: #000;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
         }
 
-        .big-button-subtitle {
-            margin-top: 6px;
-            font-size: 13px;
-            color: #b0b0b0;
+        .backbtn:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+            transform: translateY(-1px);
         }
 
-        .big-button:hover {
-            transform: translateY(-4px) scale(1.03);
-            background: linear-gradient(145deg, #202020, #2b2b2b);
-            border-color: #666;
-            box-shadow: 0 14px 35px rgba(0,0,0,0.8);
+        .backbtn:active {
+            transform: translateY(0);
+            box-shadow: none;
         }
 
-        .big-button:active {
-            transform: translateY(-1px) scale(0.99);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+        .logo-text {
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #f5f5f5;
         }
 
-        /* ---------------- SMALL BUTTON ---------------- */
-        .r-button {
-            background: #222;
-            padding: 10px 20px;
-            font-size: 12px;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
-            min-width: 120px;
-            text-align: center;
-            transition: 0.18s;
-            border: 1px solid #444;
-            margin-top: 15px;
-        }
-
-        .r-button:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.6);
-        }
-
-        /* ---------------- LATEST NEWS SECTION ---------------- */
-        .latest-news-section {
-            max-width: 900px;
-            margin: 10px auto 0;
-            padding: 0 20px 50px;
-            text-align: left;
-        }
-
-        .latest-news-header-title {
+        .titlentxt {
+            margin: 0;
             font-size: 22px;
             font-weight: 800;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.9);
         }
 
-        .latest-news-header-subtitle {
+        /* ---------------- PAGE WRAPPER ---------------- */
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 20px auto 40px;
+            padding: 0 18px 40px;
+        }
+
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .page-header-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .page-header-subtitle {
+            font-size: 14px;
+            color: #d0d0d0;
+            max-width: 540px;
+        }
+
+        /* ---------------- FILTER BAR ---------------- */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .filter-label {
             font-size: 13px;
-            color: #b8b8b8;
-            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #b5b5b5;
         }
 
-        .latest-news-grid {
+        .filter-chip {
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.25);
+            color: #eaeaea;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+        }
+
+        .filter-chip:hover {
+            transform: translateY(-1px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .filter-chip.active {
+            background: #f5c546;
+            border-color: #f5c546;
+            color: #101010;
+            font-weight: 600;
+        }
+
+        /* ---------------- GRID ---------------- */
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 18px;
-            margin-bottom: 10px;
+            gap: 20px;
         }
 
-        .latest-news-card {
-            background: radial-gradient(circle at top, #1b1b1b 0, #111 60%, #050505 100%);
+        .news-item {
+            background: rgba(240, 243, 250, 0.96);
+            color: #111;
             border-radius: 12px;
-            padding: 10px 10px 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 14px 28px rgba(0,0,0,0.65);
+            padding: 14px 14px 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.45);
             cursor: pointer;
-            overflow: hidden;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            opacity: 0;
-            transform: translateY(8px);
-            transition:
-                opacity 0.25s ease-out,
-                transform 0.25s ease-out,
-                box-shadow 0.18s ease,
-                border-color 0.18s ease,
-                background 0.18s ease;
         }
 
-        .latest-news-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .news-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.7);
+            background: #ffffff;
         }
 
-        .latest-news-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.85);
-            border-color: rgba(255,255,255,0.18);
-            background: radial-gradient(circle at top, #232323 0, #101010 60%, #050505 100%);
-        }
-
-        .latest-news-thumb {
+        .news-item-thumb {
             width: 100%;
-            border-radius: 9px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
-        .latest-news-thumb img {
+        .news-item-thumb img {
             width: 100%;
-            height: 140px;
+            height: 150px;
             object-fit: cover;
             display: block;
         }
 
-        .latest-news-tag {
+        .news-topic-tag {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 2px 9px;
+            padding: 3px 10px;
             border-radius: 999px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .latest-news-tag.achsr {
-            background: #d93b30;
-            color: #fff;
-        }
-
-        .latest-news-tag.dyymastudio {
-            background: #333b8a;
-            color: #f5f5f5;
-        }
-
-        .latest-news-tag.default {
-            background: #ffffff14;
-            color: #f5f5f5;
-        }
-
-        .latest-news-date {
             font-size: 11px;
-            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            font-weight: 700;
+            background: #111;
+            color: #f5f5f5;
             margin-bottom: 4px;
         }
 
-        .latest-news-title {
-            font-size: 14px;
+        .news-topic-tag.achsr {
+            background: #d93b30;
+        }
+
+        .news-topic-tag.dyymastudio {
+            background: #333b8a;
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .news-title {
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.25;
+        }
+
+        /* ---------------- MAXIMIZED VIEW ---------------- */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+        }
+
+        .maximized-news {
+            width: min(900px, 95%);
+            max-height: 90vh;
+            background-color: #f0f3fa;
+            color: #111;
+            border-radius: 14px;
+            padding: 18px 18px 20px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.9);
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .maximized-header {
+            margin-bottom: 10px;
+        }
+
+        .maximized-topic {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
             font-weight: 700;
-            line-height: 1.3;
+            background: #111;
+            color: #f5f5f5;
+            margin-bottom: 6px;
         }
 
-        /* ---------------- MORE INFO SECTION ---------------- */
-        #moreInfo {
-            max-width: 800px;
-            margin: 40px auto 0;
-            padding: 0 20px 40px;
-            text-align: left;
+        .maximized-title {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
         }
 
-        #moreInfo h2 {
-            margin-top: 20px;
+        #smalldate {
+            margin: 2px 0 0;
+            font-size: 13px;
+            color: #555;
         }
 
-        #moreInfo p {
-            color: #ddd;
+        .maximized-news .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #111;
+            color: white;
+            border: none;
+            padding: 7px 11px;
+            cursor: pointer;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: background 0.15s ease, transform 0.1s ease;
         }
 
-        #moreInfo a {
-            word-break: break-all;
+        .maximized-news .close-btn:hover {
+            background-color: #333;
+            transform: translateY(-1px);
         }
 
-        /* ---------------- RESPONSIVE ---------------- */
-        @media (max-width: 600px) {
-            h1 {
+        .news-iframe {
+            width: 100%;
+            height: 60vh;
+            border: none;
+            border-radius: 10px;
+            background: #f5f5f8;
+        }
+
+        @media (max-width: 700px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .page-header-title {
                 font-size: 24px;
             }
 
-            .big-button {
-                min-width: 100%;
-                max-width: 100%;
+            .grid-container {
+                grid-template-columns: 1fr;
             }
 
-            .slideshow {
-                height: 220px;
-            }
-
-            .top-left-text {
-                font-size: 14px;
-            }
-
-            .latest-news-thumb img {
-                height: 160px;
+            .news-item-thumb img {
+                height: 180px;
             }
         }
     </style>
 </head>
-
 <body>
 
     <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="top-left-text">DYYMASTUDIO</div>
-    </div>
+    <header class="top-bar">
+        <div class="top-left-group">
+            <button class="backbtn" onclick="window.location.href='../'">Back</button>
+            <span class="logo-text">DYYMASTUDIO</span>
+        </div>
+        <h1 class="titlentxt">Newswire</h1>
+    </header>
 
-    <div class="content">
-
-        <!-- HOME SECTION -->
-        <div id="home" class="section">
-            <!-- SLIDESHOW -->
-            <div class="slideshow">
-                <img src="imgbg0.jpg" class="slide active" alt="DyymaStudio banner 1">
-                <img src="imgbg1.jpg" class="slide" alt="DyymaStudio banner 2">
-            </div>
-
-            <h1>Welcome to DyymaStudio Games Website!</h1>
-            <p class="subtitle">
-                Dyymastudio is dedicated to delivering unique and immersive gaming experiences – from Angelica's Chaotic Hardcore School to future exciting projects.
+    <!-- PAGE CONTENT -->
+    <main class="page-wrapper">
+        <section class="page-header">
+            <div class="page-header-title">DyymaStudio Newswire</div>
+            <p class="page-header-subtitle">
+                Official announcements, updates and messages from DyymaStudio and our games.
             </p>
+        </section>
 
-            <!-- BIG BUTTONS -->
-            <div class="big-buttons-container">
+        <!-- FILTERS -->
+        <section class="filter-bar">
+            <span class="filter-label">Filter by:</span>
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="DyymaStudio">DyymaStudio</button>
+            <button class="filter-chip" data-filter="ACHSR">ACHSR</button>
+        </section>
 
-                <a class="big-button" href="#" onclick="showSection('home')">
-                    <div class="big-button-top">
-                        <span class="big-button-arrow">➜</span>
-                        <span class="big-button-title">Home</span>
-                    </div>
-                    <span class="big-button-subtitle">
-                        Main hub with news and quick access to everything.
-                    </span>
-                </a>
+        <!-- GRID -->
+        <section class="grid-container" id="grid-container"></section>
+    </main>
 
-                <a class="big-button" href="/games">
-                    <div class="big-button-top">
-                        <span class="big-button-arrow">➜</span>
-                        <span class="big-button-title">Games</span>
-                    </div>
-                    <span class="big-button-subtitle">
-                        Discover all DyymaStudio titles, from horror to experiments.
-                    </span>
-                </a>
-
-                <a class="big-button" href="/newswire">
-                    <div class="big-button-top">
-                        <span class="big-button-arrow">➜</span>
-                        <span class="big-button-title">Newswire</span>
-                    </div>
-                    <span class="big-button-subtitle">
-                        Dev logs, announcements and important updates.
-                    </span>
-                </a>
-
-                <a class="big-button" href="https://www.youtube.com/@dyymastudio" target="_blank">
-                    <div class="big-button-top">
-                        <span class="big-button-arrow">➜</span>
-                        <span class="big-button-title">YouTube</span>
-                    </div>
-                    <span class="big-button-subtitle">
-                        Trailers, teasers and development content on our channel.
-                    </span>
-                </a>
-
-                <a class="big-button" href="https://discord.gg/9zrXa4rshb" target="_blank">
-                    <div class="big-button-top">
-                        <span class="big-button-arrow">➜</span>
-                        <span class="big-button-title">Discord</span>
-                    </div>
-                    <span class="big-button-subtitle">
-                        Join the community, chat with us and share feedback.
-                    </span>
-                </a>
-
-                <a class="big-button" href="#" onclick="showSection('moreInfo')">
-                    <div class="big-button-top">
-                        <span class="big-button-arrow">➜</span>
-                        <span class="big-button-title">Info</span>
-                    </div>
-                    <span class="big-button-subtitle">
-                        Learn more about DyymaStudio and how to contact us.
-                    </span>
-                </a>
+    <!-- OVERLAY + MAXIMIZED ARTICLE -->
+    <div class="overlay" id="overlay">
+        <div class="maximized-news" id="maximized-news">
+            <button class="close-btn" onclick="closeMaximized()">×</button>
+            <div class="maximized-header">
+                <div id="maximized-topic" class="maximized-topic">GAME</div>
+                <h3 id="maximized-title" class="maximized-title"></h3>
+                <p id="smalldate"></p>
             </div>
-
-            <!-- LATEST NEWS SECTION -->
-            <section class="latest-news-section">
-                <div class="latest-news-header">
-                    <div class="latest-news-header-title">Latest News</div>
-                    <p class="latest-news-header-subtitle">
-                        The most recent announcements and updates from DyymaStudio and Angelica's Chaotic Hardcore School.
-                    </p>
-                </div>
-
-                <div id="latest-news-grid" class="latest-news-grid"></div>
-
-                <a class="r-button" href="/newswire">View all news</a>
-            </section>
+            <iframe id="news-iframe" class="news-iframe"></iframe>
         </div>
-
-        <!-- MORE INFO SECTION -->
-        <div id="moreInfo" class="section" style="display: none;">
-            <h2>Who are we?</h2>
-            <p>We are DyymaStudio, a small indie team that loves creating original and fun games.</p>
-            <p>We work on projects with different styles, from small horror games to big horror experiences,</p>
-            <p>always trying to bring new ideas and interesting moments to players.</p>
-
-            <h2>Contact Info</h2>
-            <p>E-mail:</p>
-            <a href="mailto:andricraftstudiogames@gmail.com" style="color: #ff5555;">
-                andricraftstudiogames@gmail.com
-            </a>
-            <p>Join our Discord server if you have any questions for us!</p>
-            <a class="r-button" href="#" onclick="showSection('home')">Back to Homepage</a>
-        </div>
-
     </div>
-
-    <div class="bottom-bar">DyymaStudio &copy; 2024 - 2025</div>
 
     <script>
-        /* SECTION SWITCHING */
-        function showSection(section) {
-            document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
-            document.getElementById(section).style.display = 'block';
-        }
-
-        /* SLIDESHOW */
-        let slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-
-        function changeSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(changeSlide, 6500);
-
-        /* LATEST NEWS DATA (stesso ordine del Newswire) */
-        const latestNewsData = [
+        const newsData = [
             {
-                title: "A Message From DyymaStudio",
-                filename: "news7.html",
-                imageIcon: "news_7.png",
-                date: "November 17, 2025",
-                topic: "DyymaStudio",
-                index: 0
+                "Title": "A Message From DyymaStudio",
+                "Filename": "news7.html",
+                "ImageIcon": "news_7.png",
+                "Date": "November 17, 2025",
+                "NewsTopic": "DyymaStudio"
             },
             {
-                title: "v.1.4.0 is Now Coming on July 5th!",
-                filename: "news6.html",
-                imageIcon: "news_6.png",
-                date: "June 28, 2025",
-                topic: "ACHSR",
-                index: 1
+                "Title": "v.1.4.0 is Now Coming on July 5th!",
+                "Filename": "news6.html",
+                "ImageIcon": "news_6.png",
+                "Date": "June 28, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
-                title: "v1.4.0 is Coming on July 12th!",
-                filename: "news5.html",
-                imageIcon: "news_5.png",
-                date: "May 23, 2025",
-                topic: "ACHSR",
-                index: 2
+                "Title": "v1.4.0 is Coming on July 12th!",
+                "Filename": "news5.html",
+                "ImageIcon": "news_5.png",
+                "Date": "May 23, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
-                title: "V.1.4.0 Coming Early this Summer",
-                filename: "news4.html",
-                imageIcon: "news_4.png",
-                date: "May 2, 2025",
-                topic: "ACHSR",
-                index: 3
+                "Title": "V.1.4.0 Coming Early this Summer",
+                "Filename": "news4.html",
+                "ImageIcon": "news_4.png",
+                "Date": "May 2, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
-                title: "v.1.3.0 Trailer Coming Soon",
-                filename: "news3.html",
-                imageIcon: "news_3.png",
-                date: "April 7, 2025",
-                topic: "ACHSR",
-                index: 4
+                "Title": "v.1.3.0 Trailer Coming Soon",
+                "Filename": "news3.html",
+                "ImageIcon": "news_3.png",
+                "Date": "April 7, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
-                title: "A Message From DyymaStudio",
-                filename: "news2.html",
-                imageIcon: "news_2.png",
-                date: "April 4, 2025",
-                topic: "ACHSR",
-                index: 5
+                "Title": "A Message From DyymaStudio",
+                "Filename": "news2.html",
+                "ImageIcon": "news_2.png",
+                "Date": "April 4, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
-                title: "ACHSR v.1.3.0 Arrives on May 11th",
-                filename: "news1.html",
-                imageIcon: "news_1.png",
-                date: "March 3, 2025",
-                topic: "ACHSR",
-                index: 6
+                "Title": "ACHSR v.1.3.0 Arrives on May 11th",
+                "Filename": "news1.html",
+                "ImageIcon": "news_1.png",
+                "Date": "March 3, 2025",
+                "NewsTopic": "ACHSR"
             },
             {
-                title: "Welcome to DyymaStudio Website!",
-                filename: "news0.html",
-                imageIcon: "news_0.png",
-                date: "February 19, 2025",
-                topic: "DyymaStudio",
-                index: 7
+                "Title": "Welcome to DyymaStudio Website!",
+                "Filename": "news0.html",
+                "ImageIcon": "news_0.png",
+                "Date": "February 19, 2025",
+                "NewsTopic": "DyymaStudio"
             }
         ];
 
+        const gridContainer = document.getElementById('grid-container');
+        const overlay = document.getElementById('overlay');
+
         function topicClass(topic) {
             const t = topic.toLowerCase();
-            if (t === "achsr") return "achsr";
-            if (t === "dyymastudio") return "dyymastudio";
-            return "default";
+            if (t === 'achsr') return 'achsr';
+            if (t === 'dyymastudio') return 'dyymastudio';
+            return '';
         }
 
-        function renderLatestNews() {
-            const grid = document.getElementById("latest-news-grid");
-            if (!grid) return;
+        function displayNews(filter = 'all') {
+            gridContainer.innerHTML = '';
+            newsData.forEach((news) => {
+                if (filter !== 'all' && news.NewsTopic !== filter) return;
 
-            grid.innerHTML = "";
-
-            const maxItems = 3; // quante news mostrare in home
-            latestNewsData.slice(0, maxItems).forEach((news, i) => {
-                const card = document.createElement("article");
-                card.className = "latest-news-card";
-
-                card.innerHTML = `
-                    <div class="latest-news-thumb">
-                        <img src="${news.imageIcon}" alt="News thumbnail">
+                const newsItem = document.createElement('article');
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <div class="news-item-thumb">
+                        <img src="${news.ImageIcon}" alt="News thumbnail">
                     </div>
-                    <span class="latest-news-tag ${topicClass(news.topic)}">
-                        ${news.topic}
+                    <span class="news-topic-tag ${topicClass(news.NewsTopic)}">
+                        ${news.NewsTopic}
                     </span>
-                    <div class="latest-news-date">${news.date}</div>
-                    <div class="latest-news-title">${news.title}</div>
+                    <div class="news-date">${news.Date}</div>
+                    <div class="news-title">${news.Title}</div>
                 `;
-
-                // click → va alla pagina Newswire e apre quella news
-                card.addEventListener("click", () => {
-                    window.location.href = "/newswire?new=" + news.index;
-                });
-
-                grid.appendChild(card);
-
-                // piccolo delay per animazione "fade-in" a cascata
-                setTimeout(() => {
-                    card.classList.add("visible");
-                }, 80 * i);
+                newsItem.onclick = () => openMaximized(news);
+                gridContainer.appendChild(newsItem);
             });
         }
 
-        document.addEventListener("DOMContentLoaded", renderLatestNews);
-    </script>
+        // stile base applicato dentro l'iframe (senza cambiare layout)
+        function applyIframeStyles() {
+            const iframe = document.getElementById('news-iframe');
+            try {
+                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                if (!doc) return;
 
+                const style = document.createElement("style");
+                style.innerHTML = `
+                    body {
+                        background: #f5f5f8 !important;
+                        color: #111111 !important;
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+                    }
+                    * {
+                        color: inherit !important;
+                    }
+                    a {
+                        color: #0062d6 !important;
+                    }
+                    a:hover {
+                        text-decoration: underline !important;
+                    }
+                `;
+                doc.head.appendChild(style);
+            } catch (e) {
+                console.error("Iframe style injection failed", e);
+            }
+        }
+
+        function openMaximized(news) {
+            document.getElementById('maximized-title').innerText = news.Title;
+            document.getElementById('smalldate').innerText = news.Date;
+            document.getElementById('maximized-topic').innerText = news.NewsTopic;
+            document.getElementById('maximized-topic').className =
+                'maximized-topic ' + topicClass(news.NewsTopic);
+
+            const iframe = document.getElementById('news-iframe');
+            iframe.onload = applyIframeStyles;
+            iframe.src = news.Filename;
+
+            overlay.style.display = 'flex';
+        }
+
+        function closeMaximized() {
+            overlay.style.display = 'none';
+        }
+
+        // close overlay clicking outside
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeMaximized();
+        });
+
+        // filter buttons
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                const filter = chip.getAttribute('data-filter');
+                displayNews(filter);
+            });
+        });
+
+        // initial render
+        displayNews();
+
+        // open specific news via ?new=index
+        window.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has("new")) {
+                const idx = parseInt(params.get("new"), 10);
+                if (!Number.isNaN(idx) && newsData[idx]) {
+                    openMaximized(newsData[idx]);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
