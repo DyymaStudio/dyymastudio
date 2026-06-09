@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>AndricraftStudio • Games Official</title>
+  <style>
+    /* === AUTHENTIC 2008 WEB 2.0 ULTRA-GLOSSY STYLE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1a1f2b;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: #e0e0e0;
+      line-height: 1.5;
+      background-image: linear-gradient(180deg, #252d3a 0%, #151a24 50%, #1a1f2b 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    #SITE_CONTAINER {
+      width: 100%;
+      max-width: 1020px;
+      margin: 0 auto;
+      background: #1c212b;
+      min-height: 100vh;
+      box-shadow: 0 0 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      border-left: 1px solid #3e4555;
+      border-right: 1px solid #3e4555;
+    }
+
+    /* === SUPER GLOSSY HEADER === */
+    #SITE_HEADER_WRAPPER {
+      background: linear-gradient(180deg,
+          #4a5568 0%,
+          #3a4458 8%,
+          #2a3345 20%,
+          #1e2738 40%,
+          #252e42 60%,
+          #1a2335 80%,
+          #2a3348 100%);
+      border-bottom: 3px solid #6b7a95;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+      overflow: visible;
+    }
+
+    #SITE_HEADER_WRAPPER::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 5%;
+      right: 5%;
+      height: 4px;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.5) 0%,
+          rgba(255, 255, 255, 0.15) 40%,
+          rgba(255, 255, 255, 0.0) 100%);
+      border-radius: 0 0 8px 8px;
+      pointer-events: none;
+      z-index: 3;
+      filter: blur(1px);
+    }
+
+    #SITE_HEADER_WRAPPER::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.05) 100%);
+      pointer-events: none;
+    }
+
+    #SITE_HEADER {
+      padding: 20px 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* === TOP BAR: Language + utility 2008 style === */
+    .top-utility-bar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 4px 15px 8px;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(180deg, #3a4356 0%, #232b3a 100%);
+      border: 1px solid #5f6b80;
+      border-radius: 16px;
+      padding: 4px 12px 4px 8px;
+      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15), 0 3px 8px rgba(0, 0, 0, 0.5);
+      font-size: 0.8rem;
+      color: #d0d8e8;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: 0.12s;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .lang-switcher:hover {
+      background: linear-gradient(180deg, #4d5a70 0%, #303b50 100%);
+      border-color: #8e9bb5;
+      box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.25), 0 0 12px rgba(100, 140, 200, 0.4);
+    }
+
+    .flag-icon {
+      width: 22px;
+      height: 15px;
+      border: 1px solid #8a8a8a;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      border-radius: 1px;
+    }
+
+    .arrow-pixel {
+      font-size: 10px;
+      color: #bcc6d6;
+      text-shadow: 0 1px 1px black;
+      margin-left: 2px;
+    }
+
+    /* === LOGO === */
+    .logo-wrap {
+      margin-bottom: 5px;
+      position: relative;
+    }
+
+    .logo-wrap img {
+      width: 520px;
+      max-width: 90%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.8)) brightness(1.08);
+    }
+
+    /* === WEB 2.0 NAVIGATION with EXTREME GLOSS === */
+    .nav-web2 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 12px 0 5px;
+    }
+
+    .nav-web2 a {
+      display: inline-block;
+      padding: 11px 26px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
+      background: linear-gradient(180deg,
+          #6e7b95 0%,
+          #4d5a70 25%,
+          #374255 50%,
+          #2a3345 75%,
+          #3e4a5e 100%);
+      border: 1px solid #8e9bb5;
+      border-radius: 24px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .nav-web2 a::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 12px;
+      right: 12px;
+      height: 30%;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.4) 0%,
+          rgba(255, 255, 255, 0.05) 100%);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .nav-web2 a:hover {
+      background: linear-gradient(180deg,
+          #8c9bb8 0%,
+          #62708e 25%,
+          #4a5872 50%,
+          #38455c 75%,
+          #505f78 100%);
+      border-color: #bcc8e0;
+      box-shadow: 0 5px 20px rgba(80, 120, 200, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* === HERO IMAGE === */
+    .hero-section {
+      background: linear-gradient(180deg, #1e2430 0%, #181d28 100%);
+      padding: 18px 15px;
+      text-align: center;
+      border-bottom: 2px solid #4a5468;
+      border-top: 2px solid #4a5468;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-section img {
+      width: 100%;
+      max-width: 980px;
+      height: auto;
+      border: 3px solid #5f6d85;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      background: #1e222b;
+    }
+
+    /* === PAGE TITLE GLOSSY === */
+    .title-block {
+      text-align: center;
+      padding: 20px 20px 8px;
+      background: linear-gradient(180deg,
+          #353e52 0%,
+          #262e40 40%,
+          #1c2332 100%);
+      margin: 15px 18px;
+      border-radius: 18px;
+      border: 1px solid #566078;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      position: relative;
+    }
+
+    .title-block::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 25px;
+      right: 25px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+
+    .title-block h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+      letter-spacing: 0.6px;
+      background: linear-gradient(180deg, #f8fbff 0%, #c4d0e4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* === CONTENT PANELS: ultra-glossy === */
+    .panel-glossy {
+      background: linear-gradient(180deg,
+          #3a4358 0%,
+          #2b3345 30%,
+          #1f2638 60%,
+          #252e42 100%);
+      border: 1px solid #56627a;
+      border-radius: 16px;
+      margin: 18px 15px;
+      padding: 25px 20px 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+    }
+
+    .panel-glossy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15px;
+      right: 15px;
+      height: 3px;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.3),
+          transparent);
+      border-radius: 3px;
+      pointer-events: none;
+      filter: blur(1px);
+    }
+
+    .panel-glossy::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 30px;
+      right: 30px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.25);
+      pointer-events: none;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    /* === SOCIAL ROWS === */
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .discord-banner-img {
+      width: 440px;
+      max-width: 95%;
+      border-radius: 10px;
+      border: 2px solid #67738a;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .icon-circle,
+    .icon-sq {
+      background: linear-gradient(180deg, #353e52 0%, #1f2638 100%);
+      padding: 10px;
+      border: 2px solid #67738a;
+      box-shadow: 0 0 20px rgba(70, 90, 140, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+    }
+
+    .icon-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 22px;
+    }
+
+    .icon-sq {
+      width: 170px;
+      height: 170px;
+      border-radius: 26px;
+      box-shadow: 0 0 22px rgba(160, 40, 40, 0.5);
+    }
+
+    .icon-circle img,
+    .icon-sq img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* === WEB 2.0 BUTTONS: EXTREME GLOSS === */
+    .btn-web2 {
+      display: inline-block;
+      padding: 14px 34px;
+      background: linear-gradient(180deg,
+          #7382a0 0%,
+          #54617e 30%,
+          #3f4b64 55%,
+          #2f3a50 80%,
+          #424e68 100%);
+      border: 1px solid #99a6c0;
+      border-radius: 30px;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .btn-web2::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 14px;
+      right: 14px;
+      height: 35%;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.45) 0%,
+          rgba(255, 255, 255, 0.05) 100%);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .btn-web2:hover {
+      background: linear-gradient(180deg,
+          #90a0c2 0%,
+          #6b7a9a 30%,
+          #525f7c 55%,
+          #3f4c64 80%,
+          #586684 100%);
+      border-color: #c0cee8;
+      box-shadow: 0 6px 24px rgba(80, 120, 200, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .btn-web2.small {
+      padding: 11px 26px;
+      font-size: 0.9rem;
+    }
+
+    .game-btns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    /* === FOOTER GLOSS === */
+    #SITE_FOOTER_WRAPPER {
+      background: linear-gradient(180deg,
+          #2f3748 0%,
+          #1f2535 50%,
+          #181d2a 100%);
+      border-top: 2px solid #556178;
+      padding: 20px;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.6);
+    }
+
+    .footer-inner {
+      color: #8892a5;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 2px black;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Language toggle active state */
+    .lang-switcher.active-lang {
+      background: linear-gradient(180deg, #556178 0%, #3a4558 100%);
+      border-color: #a0b0cc;
+    }
+
+    @media (max-width: 700px) {
+      .title-block h1 {
+        font-size: 1.5rem;
+      }
+      .discord-banner-img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="" data-new-gr-c-s-check-loaded="14.1024.0" data-gr-ext-installed="">
+
+  <script type="text/javascript">
+    var bodyCacheable = true;
+    var exclusionReason = { "shouldRender": true, "forced": false };
+    var ssrInfo = { "renderBodyTime": 915, "renderTimeStamp": 1667068249467 }
+  </script>
+  <script>
+    window.clientSideRender = false;
+    window.bi.wixBiSession.isServerSide = 1;
+  </script>
+  <script type="wix/htmlEmbeds" id="pageHtmlEmbeds.bodyStart start"></script>
+  <script type="wix/htmlEmbeds" id="pageHtmlEmbeds.bodyStart end"></script>
+  <script id="wix-first-paint">
+    if (window.ResizeObserver && (!window.PerformanceObserver || !PerformanceObserver.supportedEntryTypes ||
+        PerformanceObserver.supportedEntryTypes.indexOf('paint') === -1)) {
+      new ResizeObserver(function(entries, observer) {
+        entries.some(function(entry) {
+          var contentRect = entry.contentRect;
+          if (contentRect.width > 0 && contentRect.height > 0) {
+            requestAnimationFrame(function(now) { window.wixFirstPaint = now;
+              dispatchEvent(new CustomEvent('wixFirstPaint')); });
+            observer.disconnect();
+            return true;
+          }
+        });
+      }).observe(document.body);
+    }
+  </script>
+
+  <div id="SITE_CONTAINER">
+    <div id="main_MF">
+      <div id="SCROLL_TO_TOP" class="qhwIj ignore-focus undefined" tabindex="-1" role="region" aria-label="top of page">&nbsp;</div>
+      <div id="BACKGROUND_GROUP">
+        <div id="pageBackground_w1ckz" data-media-height-override-type="" data-media-position-override="false" class="_2v3yk">
+          <div id="bgLayers_pageBackground_w1ckz" data-hook="bgLayers" class="_3wnIc">
+            <div data-testid="colorUnderlay" class="_3KzuS _3SQN-"></div>
+            <div id="bgMedia_pageBackground_w1ckz" class="_2GUhU"></div>
+            <div data-testid="bgOverlay" class="_1eCSh"></div>
+          </div>
+        </div>
+      </div>
+      <div id="site-root">
+        <div id="masterPage" class="mesh-layout">
+          <header tabindex="-1" id="SITE_HEADER_WRAPPER">
+            <div id="SITE_HEADER" class="ZW5SX" tabindex="-1">
+              <div class="_2o25M"><div class="_1nRb9" data-testid="screenWidthContainerBg"></div></div>
+              <div class="_38XI2">
+                <div class="_2P6JN"><div class="_1dlfY" data-testid="screenWidthContainerBgCenter"></div></div>
+                <div class="_1_UPn">
+                  <div data-mesh-id="SITE_HEADERinlineContent" data-testid="inline-content" class="">
+                    <div data-mesh-id="SITE_HEADERinlineContent-gridContainer" data-testid="mesh-container-content">
+
+                      <!-- LANGUAGE SWITCHER 2008 STYLE -->
+                      <div class="top-utility-bar">
+                        <a href="#" class="lang-switcher" id="langToggle" onclick="toggleLanguage(); return false;">
+                          <img src="https://www.worldometers.info/images/flags/original/us.webp"
+                          alt="English" class="flag-icon" id="flagIcon">
+                          <span id="langLabel">English</span>
+                          <span class="arrow-pixel">▼</span>
+                        </a>
+                      </div>
+
+                      <div class="logo-wrap">
+                        <img src="https://static.wixstatic.com/media/200c20_f01c2bacb60b4db699416e58758f0741~mv2.png/v1/fill/w_600,h_57,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/LOGO.png"
+                        alt="AndricraftStudio Logo">
+                      </div>
+                      <nav class="nav-web2" id="mainNav">
+                        <a href="#" data-en="Home" data-it="Home">Home</a>
+                        <a href="#" data-en="Social Networks" data-it="Social Network">Social Networks</a>
+                        <a href="#" data-en="Our Games" data-it="I Nostri Giochi">Our Games</a>
+                        <a href="#" data-en="Newswire" data-it="Notizie">Newswire</a>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+          <main id="PAGES_CONTAINER" tabindex="-1">
+            <div id="SITE_PAGES" class="_1gF1C">
+              <div id="w1ckz" class="Ry26q">
+                <div class="_3CemL" data-testid="page-bg"></div>
+                <div class="_3K7uv">
+                  <div id="Containerw1ckz" class="_1KV2M">
+                    <div data-mesh-id="Containerw1ckzinlineContent" data-testid="inline-content" class="">
+                      <div data-mesh-id="Containerw1ckzinlineContent-gridContainer" data-testid="mesh-container-content">
+
+                        <div class="hero-section">
+                          <img src="https://static.wixstatic.com/media/200c20_a17a2f156f3d4880a693c4bd957098de~mv2.jpg/v1/crop/x_0,y_0,w_1024,h_748/fill/w_981,h_717,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/200c20_a17a2f156f3d4880a693c4bd957098de~mv2.jpg"
+                          alt="Andricraft Studio game art">
+                        </div>
+
+                        <div class="title-block">
+                          <h1 id="pageMainTitle" data-en="AndricraftStudio Games Official Website"
+                          data-it="Sito Ufficiale di AndricraftStudio Games">
+                          AndricraftStudio Games Official Website</h1>
+                      </div>
+
+                      <div class="panel-glossy">
+                        <div class="section-title" id="socialTitle" data-en="Social Networks" data-it="Social Network">
+                        Social Networks</div>
+                        <div class="social-row">
+                          <img src="https://static.wixstatic.com/media/200c20_e1a92c45e1e54ee1a72b31fc56405dd3~mv2.png/v1/fill/w_545,h_210,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/LIGHTMOD.png"
+                          alt="Discord banner" class="discord-banner-img">
+                          <div class="icon-circle">
+                            <img src="https://static.wixstatic.com/media/200c20_c73be2dd7a2949b8992f9c4346435b5d~mv2.png/v1/fill/w_175,h_175,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/200c20_c73be2dd7a2949b8992f9c4346435b5d~mv2.png"
+                            alt="Discord icon">
+                          </div>
+                          <a href="https://discord.gg/dsAq6wv2Be" target="_blank" class="btn-web2" id="joinServerBtn"
+                          data-en="Join Server" data-it="Entra nel Server">Join Server</a>
+                        </div>
+                        <div class="social-row" style="margin-top:10px;">
+                          <div class="icon-sq">
+                            <img src="https://static.wixstatic.com/media/200c20_525dfbdff636459cb0fc76606e4044e5~mv2.png/v1/fill/w_234,h_234,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Youtubbete.png"
+                            alt="YouTube icon">
+                          </div>
+                          <a href="https://www.youtube.com/channel/UCaQVtRfjrC5yVg6G8Cd5xTw" target="_blank"
+                          class="btn-web2" id="subscribeBtn"
+                          data-en="Subscribe to our YouTube Channel!"
+                          data-it="Iscriviti al nostro Canale YouTube!">
+                          Subscribe to our YouTube Channel!</a>
+                        </div>
+                      </div>
+
+                      <div class="panel-glossy">
+                        <div class="section-title" id="gamesTitle" data-en="Our games:" data-it="I nostri giochi:">
+                        Our games:</div>
+                        <div class="game-btns">
+                          <a href="https://thenewandreaz08.itch.io/achs" target="_blank" class="btn-web2 small">ACHS</a>
+                          <a href="https://thenewandreaz08.itch.io/crows-amazing-pelicans-schoolhouse" target="_blank"
+                          class="btn-web2 small">CAPSH</a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer tabindex="-1" id="SITE_FOOTER_WRAPPER">
+          <div id="SITE_FOOTER" class="ZW5SX" tabindex="-1">
+            <div class="_2o25M"><div class="_1nRb9" data-testid="screenWidthContainerBg"></div></div>
+            <div class="_38XI2">
+              <div class="_2P6JN"><div class="_1dlfY" data-testid="screenWidthContainerBgCenter"></div></div>
+              <div class="_1_UPn">
+                <div data-mesh-id="SITE_FOOTERinlineContent" data-testid="inline-content" class="">
+                  <div data-mesh-id="SITE_FOOTERinlineContent-gridContainer" data-testid="mesh-container-content">
+                    <div class="footer-inner" id="footerText" data-en="© 2008 AndricraftStudio Games"
+                    data-it="© 2008 AndricraftStudio Giochi">© 2008 AndricraftStudio Games</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div id="SCROLL_TO_BOTTOM" class="qhwIj ignore-focus undefined" tabindex="-1" role="region" aria-label="bottom of page">&nbsp;</div>
+  </div>
+</div>
+
+<script>
+  window.firstPageId = 'w1ckz'
+  window.bi.sendBeat(12, 'Partially visible', { pageId: window.firstPageId })
+  if (window.requestCloseWelcomeScreen) { window.requestCloseWelcomeScreen() }
+  if (!window.__browser_deprecation__) {
+    window.fedops.phaseStarted('partially_visible', { paramsOverrides: { pageId: firstPageId } })
+  }
+</script>
+
+<script>
+  // === LANGUAGE TOGGLE: English / Italian ===
+  let currentLang = 'en';
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'it' : 'en';
+    updateLanguageUI();
+  }
+
+  function updateLanguageUI() {
+    const flagIcon = document.getElementById('flagIcon');
+    const langLabel = document.getElementById('langLabel');
+
+    if (currentLang === 'it') {
+      flagIcon.src = 'https://www.worldometers.info/images/flags/original/it.webp';
+      flagIcon.alt = 'Italiano';
+      langLabel.textContent = 'Italiano';
+    } else {
+      flagIcon.src = 'https://www.worldometers.info/images/flags/original/us.webp';
+      flagIcon.alt = 'English';
+      langLabel.textContent = 'English';
+    }
+
+    // Update all elements with data-en/data-it attributes
+    document.querySelectorAll('[data-en][data-it]').forEach(el => {
+      const text = el.getAttribute('data-' + currentLang);
+      if (text && el.tagName === 'A' && el.classList.contains('btn-web2')) {
+        el.childNodes.forEach(child => {
+          if (child.nodeType === 3) { // text node
+            child.textContent = text;
+          }
+        });
+        // Also handle span inside button if exists
+        const span = el.querySelector('span');
+        if (span && span.hasAttribute('data-en')) {
+          span.textContent = text;
+        } else if (!span) {
+          el.textContent = text;
+        }
+      } else if (text && (el.tagName === 'H1' || el.tagName === 'DIV' || el.tagName === 'A')) {
+        el.textContent = text;
+      } else if (text) {
+        el.textContent = text;
+      }
+    });
+
+    // Special handling for buttons that might have complex structure
+    const joinBtn = document.getElementById('joinServerBtn');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    if (joinBtn) joinBtn.textContent = joinBtn.getAttribute('data-' + currentLang);
+    if (subscribeBtn) subscribeBtn.textContent = subscribeBtn.getAttribute('data-' + currentLang);
+    const pageTitle = document.getElementById('pageMainTitle');
+    if (pageTitle) pageTitle.textContent = pageTitle.getAttribute('data-' + currentLang);
+    const socialTitle = document.getElementById('socialTitle');
+    if (socialTitle) socialTitle.textContent = socialTitle.getAttribute('data-' + currentLang);
+    const gamesTitle = document.getElementById('gamesTitle');
+    if (gamesTitle) gamesTitle.textContent = gamesTitle.getAttribute('data-' + currentLang);
+    const footerT = document.getElementById('footerText');
+    if (footerT) footerT.textContent = footerT.getAttribute('data-' + currentLang);
+  }
+</script>
+
+<script type="wix/htmlEmbeds" id="pageHtmlEmbeds.bodyEnd start"></script>
+<script type="wix/htmlEmbeds" id="pageHtmlEmbeds.bodyEnd end"></script>
+<script type="application/json" id="wix-warmup-data">
+  { "platform": { "ssrPropsUpdates": [], "ssrStyleUpdates": [] }, "appsWarmupData": {}, "ooi": { "failedInSsr": {} } }
+</script>
+
+</body>
+</html>
