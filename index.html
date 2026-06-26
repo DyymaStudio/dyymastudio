@@ -311,7 +311,7 @@ The most recent announcements and updates from DyymaStudio and Angelica's Chaoti
 </section>
 
 <section class="era2-countdown-section">
-<div class="latest-news-header-title era2-title">ERA 2 BEGINS IN:</div>
+<div class="latest-news-header-title era2-title">ERA II BEGINS IN:</div>
 <p class="latest-news-header-subtitle">
 The next era of Angelica's Chaotic Hardcore School begins soon.
 </p>
@@ -400,14 +400,14 @@ function renderLatestNews() {
     });
 }
 
-const era2Date = new Date("2026-07-09T22:00:00+02:00").getTime();
+const era2Date = new Date("2026-09-08T22:00:00+02:00").getTime();
 
 function updateEra2Countdown() {
     const now = new Date().getTime();
     const distance = era2Date - now;
 
     if (distance <= 0) {
-        document.querySelector(".era2-countdown-box").innerHTML = "<h2>ERA 2 HAS BEGUN</h2>";
+        document.querySelector(".era2-countdown-box").innerHTML = "<h2>ERA II HAS BEGUN</h2>";
         return;
     }
 
